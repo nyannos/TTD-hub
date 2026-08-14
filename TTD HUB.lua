@@ -7065,28 +7065,3 @@ player.AncestryChanged:Connect(function(_, parent)
         -- Không cần làm gì thêm
     end
 end)
---// 7 COLOR WEAPON / SKILL EFFECT
-
-local function rainbowSkill(obj)
-    if obj:IsA("ParticleEmitter")
-    or obj:IsA("Beam")
-    or obj:IsA("Trail") then
-
-        obj.Color = ColorSequence.new{
-            ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 0, 0)),
-            ColorSequenceKeypoint.new(0.2, Color3.fromRGB(255, 165, 0)),
-            ColorSequenceKeypoint.new(0.4, Color3.fromRGB(255, 255, 0)),
-            ColorSequenceKeypoint.new(0.6, Color3.fromRGB(0, 255, 0)),
-            ColorSequenceKeypoint.new(0.8, Color3.fromRGB(0, 0, 255)),
-            ColorSequenceKeypoint.new(1, Color3.fromRGB(128, 0, 128))
-        }
-    end
-end
-
--- Áp dụng cho hiệu ứng đang có
-for _, obj in ipairs(workspace:GetDescendants()) do
-    rainbowSkill(obj)
-end
-
--- Áp dụng cho hiệu ứng mới xuất hiện
-workspace.DescendantAdded:Connect(rainbowSkill)
